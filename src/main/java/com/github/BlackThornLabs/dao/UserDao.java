@@ -1,0 +1,16 @@
+package com.github.BlackThornLabs.dao;
+
+
+import com.github.BlackThornLabs.model.User;
+import java.util.List;
+import java.util.Optional;
+
+public interface UserDao {
+    void save(User user);
+    Optional<User> findById(Long id);
+    List<User> findAll();
+    void update(User user);
+    void delete(User user);
+    void deleteById(Long id);
+    List<User> findByEmail(String email); // для поиска по email (может быть полезно)
+}
