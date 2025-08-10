@@ -12,5 +12,4 @@ public interface UserDao {
     void update(User user);
     void delete(User user);
     void deleteById(Long id);
-    List<User> findByEmail(String email); // для поиска по email (может быть полезно)
 }

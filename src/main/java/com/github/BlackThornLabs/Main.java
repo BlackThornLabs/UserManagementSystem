@@ -16,12 +16,11 @@ public class Main {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static void main(String[] args) {
-        boolean running = true;
 
-        while (running) {
+        while (true) {
             printMenu();
-            int choice = getIntInput("Choose an option: ");
-            scanner.nextLine(); // consume newline
+            int choice = getIntInput("Выберите команду: ");
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -40,64 +39,61 @@ public class Main {
                     deleteUser();
                     break;
                 case 6:
-                    findUserByEmail();
-                    break;
-                case 7:
-                    running = false;
-                    break;
+                    System.out.println("Выход из приложения...");
+                    scanner.close();
+                    HibernateUtil.shutdown();
+                    return;
                 default:
-                    System.out.println("Invalid option! Please try again.");
+                    System.out.println("Недопустимый параметр! Пожалуйста, попробуйте снова.");
             }
         }
-
-        System.out.println("Exiting application...");
-        HibernateUtil.shutdown();
-        scanner.close();
     }
 
     private static void printMenu() {
-        System.out.println("\n=== User Management System ===");
-        System.out.println("1. Create User");
-        System.out.println("2. Get User by ID");
-        System.out.println("3. Get All Users");
-        System.out.println("4. Update User");
-        System.out.println("5. Delete User");
-        System.out.println("6. Find User by Email");
-        System.out.println("7. Exit");
+        System.out.println("""
+        === User Management System ==="
+        1. Создать запись
+        2. Найти пользователя по ID
+        3. Все пользователи
+        4. Обновить запись
+        5. Удалить запись
+        6. Выход
+        """
+        );
     }
 
     private static int getIntInput(String prompt) {
         System.out.print(prompt);
         while (!scanner.hasNextInt()) {
-            System.out.print("Please enter a valid number: ");
+            System.out.print("Пожалуйста, введите допустимый номер: ");
             scanner.next();
         }
         return scanner.nextInt();
     }
 
     private static void createUser() {
-        System.out.println("\n=== Create New User ===");
-        System.out.print("Enter name: ");
+        System.out.println("\n=== Создать нового пользователя ===");
+        System.out.print("Введите имя: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter email: ");
+        System.out.print("Введите email: ");
         String email = scanner.nextLine();
 
-        int age = getIntInput("Enter age: ");
+        int age = getIntInput("Введите возраст: ");
         scanner.nextLine(); // consume newline
 
         User user = new User(name, email, age);
         try {
             userDao.save(user);
-            System.out.println("User created successfully with ID: " + user.getId());
+            System.out.println("Пользователь успешно создан с ID: " + user.getId());
         } catch (Exception e) {
-            System.err.println("Error creating user: " + e.getMessage());
+            System.err.println("Ошибка создания записи: " + e.getMessage());
         }
     }
 
     private static void getUserById() {
-        System.out.println("\n=== Get User by ID ===");
-        long id = getIntInput("Enter user ID: ");
+        System.out.println("\n=== Найти пользователя по ID ===");
+        long id = getIntInput("Введите ID пользователя: ");
         scanner.nextLine(); // consume newline
 
         try {
@@ -105,109 +101,92 @@ public class Main {
             if (user.isPresent()) {
                 printUserDetails(user.get());
             } else {
-                System.out.println("User not found with ID: " + id);
+                System.out.println("Не найден пользователь с ID: " + id);
             }
         } catch (Exception e) {
-            System.err.println("Error retrieving user: " + e.getMessage());
+            System.err.println("Ошибка при поиске пользователя: " + e.getMessage());
         }
     }
 
     private static void getAllUsers() {
-        System.out.println("\n=== All Users ===");
+        System.out.println("\n=== Все пользователи ===");
         try {
             List<User> users = userDao.findAll();
             if (users.isEmpty()) {
-                System.out.println("No users found.");
+                System.out.println("Пользователей не найдено.");
             } else {
                 users.forEach(Main::printUserDetails);
             }
         } catch (Exception e) {
-            System.err.println("Error retrieving users: " + e.getMessage());
+            System.err.println("Ошибка при поиске пользователей: " + e.getMessage());
         }
     }
 
     private static void updateUser() {
-        System.out.println("\n=== Update User ===");
-        long id = getIntInput("Enter user ID to update: ");
-        scanner.nextLine(); // consume newline
+        System.out.println("\n=== Обновить запись ===");
+        long id = getIntInput("Введите ID пользователя для обновления: ");
+        scanner.nextLine();
 
         try {
             Optional<User> userOpt = userDao.findById(id);
             if (userOpt.isPresent()) {
                 User user = userOpt.get();
-                System.out.println("Current user details:");
+                System.out.println("Детали текущей записи:");
                 printUserDetails(user);
 
-                System.out.print("Enter new name (leave blank to keep current): ");
+                System.out.print("Введите новое имя (оставьте пустым, чтобы сохранить текущее): ");
                 String name = scanner.nextLine();
                 if (!name.isEmpty()) {
                     user.setName(name);
                 }
 
-                System.out.print("Enter new email (leave blank to keep current): ");
+                System.out.print("Введите новый email (оставьте пустым, чтобы сохранить текущее): ");
                 String email = scanner.nextLine();
                 if (!email.isEmpty()) {
                     user.setEmail(email);
                 }
 
-                System.out.print("Enter new age (0 to keep current): ");
+                System.out.print("Введите новый возраст (0 чтобы сохранить текущий): ");
                 int age = getIntInput("");
-                scanner.nextLine(); // consume newline
+                scanner.nextLine();
                 if (age > 0) {
                     user.setAge(age);
                 }
 
                 userDao.update(user);
-                System.out.println("User updated successfully!");
+                System.out.println("Пользователь обновлён успешно!");
             } else {
-                System.out.println("User not found with ID: " + id);
+                System.out.println("Не найден пользователь с ID: " + id);
             }
         } catch (Exception e) {
-            System.err.println("Error updating user: " + e.getMessage());
+            System.err.println("Ошибка при обновлении пользователя: " + e.getMessage());
         }
     }
 
     private static void deleteUser() {
-        System.out.println("\n=== Delete User ===");
-        long id = getIntInput("Enter user ID to delete: ");
-        scanner.nextLine(); // consume newline
+        System.out.println("\n=== Удалить запись ===");
+        long id = getIntInput("Введите ID пользователя для удаления: ");
+        scanner.nextLine();
 
         try {
             Optional<User> userOpt = userDao.findById(id);
             if (userOpt.isPresent()) {
                 userDao.deleteById(id);
-                System.out.println("User deleted successfully!");
+                System.out.println("Пользователь успешно удалён!");
             } else {
-                System.out.println("User not found with ID: " + id);
+                System.out.println("Не найден пользователь с ID: " + id);
             }
         } catch (Exception e) {
-            System.err.println("Error deleting user: " + e.getMessage());
-        }
-    }
-
-    private static void findUserByEmail() {
-        System.out.println("\n=== Find User by Email ===");
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-
-        try {
-            List<User> users = userDao.findByEmail(email);
-            if (users.isEmpty()) {
-                System.out.println("No users found with email: " + email);
-            } else {
-                users.forEach(Main::printUserDetails);
-            }
-        } catch (Exception e) {
-            System.err.println("Error finding users: " + e.getMessage());
+            System.err.println("Ошибка удаления пользователя: " + e.getMessage());
         }
     }
 
     private static void printUserDetails(User user) {
-        System.out.println("\nUser ID: " + user.getId());
-        System.out.println("Name: " + user.getName());
+        System.out.println("\nID: " + user.getId());
+        System.out.println("Имя: " + user.getName());
         System.out.println("Email: " + user.getEmail());
-        System.out.println("Age: " + user.getAge());
-        System.out.println("Created At: " + user.getCreatedAt().format(formatter));
+        System.out.println("Возраст: " + user.getAge());
+        System.out.println("Запись создана: " + user.getCreatedAt().format(formatter));
         System.out.println("---------------------");
     }
 }

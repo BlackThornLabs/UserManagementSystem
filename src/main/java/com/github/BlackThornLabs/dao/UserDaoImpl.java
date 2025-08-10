@@ -16,13 +16,13 @@ public class UserDaoImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(user);
+            session.persist(user);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Failed to save user: " + e.getMessage(), e);
+            throw new RuntimeException("Не удалось сохранить запись: " + e.getMessage(), e);
         }
     }
 
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
             User user = session.get(User.class, id);
             return Optional.ofNullable(user);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to find user by id: " + id, e);
+            throw new RuntimeException("Не удалось найти пользователя с ID: " + id, e);
         }
     }
 
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
             Query<User> query = session.createQuery("FROM User", User.class);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Failed to retrieve all users", e);
+            throw new RuntimeException("Не удалось вывести список пользователей", e);
         }
     }
 
@@ -51,13 +51,13 @@ public class UserDaoImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(user);
+            session.merge(user);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Failed to update user: " + user.getId(), e);
+            throw e;
         }
     }
 
@@ -66,13 +66,13 @@ public class UserDaoImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(user);
+            session.remove(user);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Failed to delete user: " + user.getId(), e);
+            throw new RuntimeException("Не удалось удалить пользователя: " + user.getId(), e);
         }
     }
 
@@ -83,25 +83,14 @@ public class UserDaoImpl implements UserDao {
             transaction = session.beginTransaction();
             User user = session.get(User.class, id);
             if (user != null) {
-                session.delete(user);
+                session.remove(user);
             }
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Failed to delete user by id: " + id, e);
-        }
-    }
-
-    @Override
-    public List<User> findByEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
-            query.setParameter("email", email);
-            return query.getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to find users by email: " + email, e);
+            throw new RuntimeException("Не удалось удалить пользователя по id: " + id, e);
         }
     }
 }
