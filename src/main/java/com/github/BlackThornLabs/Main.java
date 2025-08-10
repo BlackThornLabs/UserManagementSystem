@@ -171,7 +171,7 @@ public class Main {
         try {
             Optional<User> userOpt = userDao.findById(id);
             if (userOpt.isPresent()) {
-                userDao.deleteById(id);
+                userDao.delete(id);
                 System.out.println("Пользователь успешно удалён!");
             } else {
                 System.out.println("Не найден пользователь с ID: " + id);
