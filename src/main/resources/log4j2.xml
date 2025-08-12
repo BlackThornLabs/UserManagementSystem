@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
+        <!-- Консольный вывод -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
+        <!-- Файловый вывод -->
+        <RollingFile name="File" fileName="logs/user-service.log"
+                     filePattern="logs/user-service-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
     </Appenders>
+
     <Loggers>
-        <Root level="info">
+        <!-- Логи нашего приложения (INFO и выше) -->
+        <Logger name="com.github.BlackThornLabs" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <!-- Логи Hibernate (SQL-запросы и параметры) -->
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="File"/> <!-- Только в файл -->
+        </Logger>
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+            <AppenderRef ref="File"/> <!-- Параметры SQL-запросов -->
+        </Logger>
+
+        <!-- Остальные логи Hibernate (только ошибки) -->
+        <Logger name="org.hibernate" level="warn" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <!-- Корневой логгер (если что-то пропущено) -->
+        <Root level="warn">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
-    <RollingFile name="File" fileName="logs/user-service.log"
-                 filePattern="logs/user-service-%d{yyyy-MM-dd}-%i.log">
-        <Policies>
-            <TimeBasedTriggeringPolicy interval="1"/>
-            <SizeBasedTriggeringPolicy size="10 MB"/>
-        </Policies>
-    </RollingFile>
 </Configuration>

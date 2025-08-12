@@ -16,7 +16,6 @@ public class Main {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static void main(String[] args) {
-
         while (true) {
             printMenu();
             int choice = getIntInput("Выберите команду: ");

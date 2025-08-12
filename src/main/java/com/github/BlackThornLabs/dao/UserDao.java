@@ -1,6 +1,5 @@
 package com.github.BlackThornLabs.dao;
 
-
 import com.github.BlackThornLabs.model.User;
 import java.util.List;
 import java.util.Optional;

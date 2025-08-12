@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw e;
+            throw new RuntimeException("Не удалось изменить данные пользователя", e);
         }
     }
 
