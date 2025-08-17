@@ -13,6 +13,7 @@ public class UserService {
     }
 
     public User createUser(String name, String email, int age) {
+        validateUserData(name, email, age);
         User user = new User(name, email, age);
         userDao.save(user);
         return user;
@@ -29,7 +30,7 @@ public class UserService {
     public void updateUser(Long id, String name, String email, int age) {
         validateUserData(name, email, age);
         User user = userDao.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Пользователь не найден!"));
         user.setName(name);
         user.setEmail(email);
         user.setAge(age);

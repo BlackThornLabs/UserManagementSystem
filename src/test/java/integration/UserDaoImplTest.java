@@ -1,3 +1,5 @@
+package integration;
+
 import com.github.BlackThornLabs.dao.UserDao;
 import com.github.BlackThornLabs.dao.UserDaoImpl;
 import com.github.BlackThornLabs.model.User;
@@ -73,22 +75,22 @@ class UserDaoImplTest {
         userDao.save(new User("Ada Lovelace", "ada@forever.com", 36));
         userDao.save(new User("John Romero", "doom@guy.com", 57));
 
-        List<User> users = userDao.findAll();
-        assertThat(users).hasSize(2);
-        assertThat(users).extracting(User::getName).containsExactly("Ada Lovelace", "John Romero");
+        List<User> testUsers = userDao.findAll();
+        assertThat(testUsers).hasSize(2);
+        assertThat(testUsers).extracting(User::getName).containsExactly("Ada Lovelace", "John Romero");
     }
 
     @Test
     void shouldUpdateUser() {
-        User user = new User("Alfonso John Romero", "doom@guy.com", 32);
-        userDao.save(user);
+        User userToUpdate = new User("Alfonso John Romero", "doom@guy.com", 32);
+        userDao.save(userToUpdate);
 
-        user.setName("John Romero");
-        user.setEmail("free@guy.com");
-        user.setAge(57);
-        userDao.update(user);
+        userToUpdate.setName("John Romero");
+        userToUpdate.setEmail("free@guy.com");
+        userToUpdate.setAge(57);
+        userDao.update(userToUpdate);
 
-        Optional<User> updatedUser = userDao.findById(user.getId());
+        Optional<User> updatedUser = userDao.findById(userToUpdate.getId());
         assertThat(updatedUser).isPresent();
         assertThat(updatedUser.get().getName()).isEqualTo("John Romero");
         assertThat(updatedUser.get().getEmail()).isEqualTo("free@guy.com");
@@ -97,12 +99,11 @@ class UserDaoImplTest {
 
     @Test
     void shouldDeleteUser() {
-        User user = new User("To Delete", "delete@example.com", 50);
-        userDao.save(user);
-        assertThat(userDao.findById(user.getId())).isPresent();
+        User userToDelete = new User("To Delete", "delete@example.com", 50);
+        userDao.save(userToDelete);
+        assertThat(userDao.findById(userToDelete.getId())).isPresent();
 
-        userDao.delete(user.getId());
-
-        assertThat(userDao.findById(user.getId())).isEmpty();
+        userDao.delete(userToDelete.getId());
+        assertThat(userDao.findById(userToDelete.getId())).isEmpty();
     }
 }
