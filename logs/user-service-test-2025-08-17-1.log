@@ -1,0 +1,714 @@
+22:40:22.270 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+22:40:22.530 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:40:22.564 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@6cbb175) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@38fb50f8)
+22:40:22.564 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7ab802f4) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@608cd501)
+22:40:23.710 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+22:40:23.712 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [57]
+22:40:23.712 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T22:40:21.841200700]
+22:40:23.713 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [doom@guy.com]
+22:40:23.713 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Alfonso John Romero]
+22:40:23.721 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+22:40:23.721 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ERROR: duplicate key value violates unique constraint "uk6dotkott2kjsp8vw4d0m25fb7"
+  Detail: Key (email)=(doom@guy.com) already exists.
+22:40:23.743 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+22:40:23.744 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [70]
+22:40:23.744 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T22:40:23.743316200]
+22:40:23.744 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [java@rules.com]
+22:40:23.744 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [James Gosling]
+22:40:23.745 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+22:40:23.745 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ERROR: duplicate key value violates unique constraint "uk6dotkott2kjsp8vw4d0m25fb7"
+  Detail: Key (email)=(java@rules.com) already exists.
+22:40:23.750 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+22:40:23.750 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [20]
+22:40:23.750 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T22:40:23.749310200]
+22:40:23.750 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [user1@example.com]
+22:40:23.750 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [User1]
+22:40:23.751 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+22:40:23.751 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - ERROR: duplicate key value violates unique constraint "uk6dotkott2kjsp8vw4d0m25fb7"
+  Detail: Key (email)=(user1@example.com) already exists.
+22:40:23.755 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+22:40:23.755 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [35]
+22:40:23.755 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T22:40:23.754310700]
+22:40:23.755 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [ada@forever.com]
+22:40:23.756 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Ada Lovelace]
+22:40:23.796 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+22:40:23.797 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [34]
+22:40:23.812 [main] DEBUG org.hibernate.SQL - 
+    /* delete for com.github.BlackThornLabs.model.User */delete 
+    from
+        users 
+    where
+        id=?
+22:40:23.812 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [34]
+22:40:23.815 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+22:40:23.816 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [34]
+23:24:17.722 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+23:24:17.967 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+23:24:18.005 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@27976390) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@37e0056e)
+23:24:18.005 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@415795f3) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2fe2965c)
+23:26:25.672 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+23:26:25.929 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+23:26:25.969 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@30a7653e) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@7cff3f1d)
+23:26:25.969 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6401188a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@33a8c9c9)
+23:35:13.786 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+23:35:14.052 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+23:35:14.087 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@29f3c438) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@5460edd3)
+23:35:14.087 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5dbbb292) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@613f7eb7)
+23:35:15.389 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:35:15.410 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.411 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [999]
+23:35:15.479 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:35:15.496 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:35:15.498 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [40]
+23:35:15.498 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.481265900]
+23:35:15.498 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [original@example.com]
+23:35:15.499 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Original]
+23:35:15.518 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.519 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [35]
+23:35:15.528 [main] DEBUG org.hibernate.SQL - 
+    /* update
+        for com.github.BlackThornLabs.model.User */update users 
+    set
+        age=?,
+        created_at=?,
+        email=?,
+        name=? 
+    where
+        id=?
+23:35:15.528 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [45]
+23:35:15.528 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.481265900]
+23:35:15.529 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [updated@example.com]
+23:35:15.529 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Updated]
+23:35:15.529 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (5:BIGINT) <- [35]
+23:35:15.531 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.531 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [35]
+23:35:15.541 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:35:15.544 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:35:15.544 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [25]
+23:35:15.544 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.543256600]
+23:35:15.544 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [test@example.com]
+23:35:15.544 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Test User]
+23:35:15.546 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.547 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [36]
+23:35:15.553 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:35:15.556 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:35:15.556 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [20]
+23:35:15.556 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.555258]
+23:35:15.557 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [user1@example.com]
+23:35:15.557 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [User 1]
+23:35:15.558 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:35:15.559 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [30]
+23:35:15.559 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.558251500]
+23:35:15.559 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [user2@example.com]
+23:35:15.559 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [User 2]
+23:35:15.581 [main] DEBUG org.hibernate.SQL - 
+    /* 
+FROM
+    User */ select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0
+23:35:15.594 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:35:15.596 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:35:15.597 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [50]
+23:35:15.597 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:35:15.596257700]
+23:35:15.597 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [delete@example.com]
+23:35:15.597 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [To Delete]
+23:35:15.599 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.599 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [39]
+23:35:15.601 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.601 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [39]
+23:35:15.604 [main] DEBUG org.hibernate.SQL - 
+    /* delete for com.github.BlackThornLabs.model.User */delete 
+    from
+        users 
+    where
+        id=?
+23:35:15.604 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [39]
+23:35:15.606 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:35:15.607 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [39]
+23:37:01.215 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+23:37:01.465 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+23:37:01.498 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@631c6d11) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@65be88ae)
+23:37:01.498 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@62ade015) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@70ede57d)
+23:37:02.775 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:37:02.796 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:02.797 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [999]
+23:37:02.863 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:37:02.889 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:37:02.891 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [40]
+23:37:02.891 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:02.865625800]
+23:37:02.892 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [original@example.com]
+23:37:02.892 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Original]
+23:37:02.927 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:02.927 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [40]
+23:37:02.937 [main] DEBUG org.hibernate.SQL - 
+    /* update
+        for com.github.BlackThornLabs.model.User */update users 
+    set
+        age=?,
+        created_at=?,
+        email=?,
+        name=? 
+    where
+        id=?
+23:37:02.937 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [45]
+23:37:02.937 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:02.865625800]
+23:37:02.937 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [updated@example.com]
+23:37:02.937 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Updated]
+23:37:02.937 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (5:BIGINT) <- [40]
+23:37:02.940 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:02.941 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [40]
+23:37:02.949 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:37:02.951 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:37:02.951 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [25]
+23:37:02.951 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:02.950775200]
+23:37:02.951 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [test@example.com]
+23:37:02.951 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Test User]
+23:37:02.953 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:02.953 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [41]
+23:37:02.960 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:37:02.962 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:37:02.962 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [20]
+23:37:02.962 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:02.961775]
+23:37:02.962 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [user1@example.com]
+23:37:02.962 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [User 1]
+23:37:02.964 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:37:02.965 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [30]
+23:37:02.965 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:02.964771500]
+23:37:02.965 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [user2@example.com]
+23:37:02.965 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [User 2]
+23:37:02.987 [main] DEBUG org.hibernate.SQL - 
+    /* 
+FROM
+    User */ select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0
+23:37:03.000 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:37:03.002 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:37:03.002 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [50]
+23:37:03.002 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:37:03.001774700]
+23:37:03.002 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [delete@example.com]
+23:37:03.002 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [To Delete]
+23:37:03.004 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:03.005 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [44]
+23:37:03.006 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:03.006 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [44]
+23:37:03.010 [main] DEBUG org.hibernate.SQL - 
+    /* delete for com.github.BlackThornLabs.model.User */delete 
+    from
+        users 
+    where
+        id=?
+23:37:03.010 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [44]
+23:37:03.013 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:37:03.013 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [44]
+23:48:32.184 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+23:48:32.453 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+23:48:32.490 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2003, org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@6e8fdd19) replaced previous registration(org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl@35787726)
+23:48:32.490 [main] DEBUG org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2199e845) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@27976390)
+23:48:33.829 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:48:33.849 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:33.850 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [999]
+23:48:33.923 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:48:33.940 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:48:33.942 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [40]
+23:48:33.943 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:33.925275]
+23:48:33.943 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [original@example.com]
+23:48:33.944 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Original]
+23:48:33.970 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:33.970 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [45]
+23:48:33.982 [main] DEBUG org.hibernate.SQL - 
+    /* update
+        for com.github.BlackThornLabs.model.User */update users 
+    set
+        age=?,
+        created_at=?,
+        email=?,
+        name=? 
+    where
+        id=?
+23:48:33.982 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [45]
+23:48:33.983 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:33.925275]
+23:48:33.983 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [updated@example.com]
+23:48:33.983 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Updated]
+23:48:33.983 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (5:BIGINT) <- [45]
+23:48:33.986 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:33.986 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [45]
+23:48:33.996 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:48:33.998 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:48:33.998 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [70]
+23:48:33.998 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:33.998305100]
+23:48:33.998 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [java@rules.com]
+23:48:33.999 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [James Gosling]
+23:48:34.000 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:34.001 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [46]
+23:48:34.008 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:48:34.010 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:48:34.011 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [36]
+23:48:34.011 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:34.010835300]
+23:48:34.011 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [ada@forever.com]
+23:48:34.011 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [Ada Lovelace]
+23:48:34.013 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:48:34.014 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [57]
+23:48:34.014 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:34.013927700]
+23:48:34.014 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [doom@guy.com]
+23:48:34.014 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [John Romero]
+23:48:34.034 [main] DEBUG org.hibernate.SQL - 
+    /* 
+FROM
+    User */ select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0
+23:48:34.047 [main] DEBUG org.hibernate.SQL - 
+    /* DELETE 
+    FROM
+        User */ delete 
+    from
+        users u1_0
+23:48:34.049 [main] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.github.BlackThornLabs.model.User */insert 
+    into
+        users (age, created_at, email, name) 
+    values
+        (?, ?, ?, ?)
+23:48:34.049 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:INTEGER) <- [50]
+23:48:34.049 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (2:TIMESTAMP) <- [2025-08-17T23:48:34.048394200]
+23:48:34.049 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (3:VARCHAR) <- [delete@example.com]
+23:48:34.049 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (4:VARCHAR) <- [To Delete]
+23:48:34.052 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:34.052 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [49]
+23:48:34.053 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:34.054 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [49]
+23:48:34.057 [main] DEBUG org.hibernate.SQL - 
+    /* delete for com.github.BlackThornLabs.model.User */delete 
+    from
+        users 
+    where
+        id=?
+23:48:34.057 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [49]
+23:48:34.060 [main] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+23:48:34.060 [main] TRACE org.hibernate.orm.jdbc.bind - binding parameter (1:BIGINT) <- [49]

@@ -80,19 +80,19 @@ class UserDaoImplTest {
 
     @Test
     void shouldUpdateUser() {
-        User user = new User("Original", "original@example.com", 40);
+        User user = new User("Alfonso John Romero", "doom@guy.com", 32);
         userDao.save(user);
 
-        user.setName("Updated");
-        user.setEmail("updated@example.com");
-        user.setAge(45);
+        user.setName("John Romero");
+        user.setEmail("free@guy.com");
+        user.setAge(57);
         userDao.update(user);
 
         Optional<User> updatedUser = userDao.findById(user.getId());
         assertThat(updatedUser).isPresent();
-        assertThat(updatedUser.get().getName()).isEqualTo("Updated");
-        assertThat(updatedUser.get().getEmail()).isEqualTo("updated@example.com");
-        assertThat(updatedUser.get().getAge()).isEqualTo(45);
+        assertThat(updatedUser.get().getName()).isEqualTo("John Romero");
+        assertThat(updatedUser.get().getEmail()).isEqualTo("free@guy.com");
+        assertThat(updatedUser.get().getAge()).isEqualTo(57);
     }
 
     @Test
