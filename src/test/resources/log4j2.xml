@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
-        <!-- Консольный вывод -->
+        <!-- консольный вывод -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
-        <!-- Файловый вывод -->
-        <RollingFile name="File" fileName="logs/user-service.log"
-                     filePattern="logs/user-service-%d{yyyy-MM-dd}-%i.log">
+        <!-- файловый вывод -->
+        <RollingFile name="File" fileName="logs/user-service-test.log"
+                     filePattern="logs/user-service-test-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -19,7 +19,7 @@
     </Appenders>
 
     <Loggers>
-        <!-- Логи нашего приложения (INFO и выше) -->
+        <!-- логи приложения (INFO и выше) -->
         <Logger name="com.github.BlackThornLabs" level="info" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
@@ -29,7 +29,7 @@
         <Logger name="org.hibernate.type.descriptor.sql" level="TRACE"/>
         <Logger name="org.hibernate.SQL" level="DEBUG"/>
 
-        <!-- Логи Hibernate (SQL-запросы и параметры) -->
+        <!-- логи Hibernate (SQL-запросы и параметры) -->
         <Logger name="org.hibernate.SQL" level="debug" additivity="false">
             <AppenderRef ref="File"/> <!-- Только в файл -->
         </Logger>
@@ -38,7 +38,6 @@
             <AppenderRef ref="File"/>     <!-- и в файл -->
         </Logger>
 
-        <!-- Остальные логи Hibernate (только ошибки) -->
         <Logger name="org.hibernate" level="warn" additivity="false">
             <AppenderRef ref="File"/>
         </Logger>
