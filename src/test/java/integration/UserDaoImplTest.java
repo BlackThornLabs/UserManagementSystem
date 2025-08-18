@@ -11,11 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static integration.TestDataUtil.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Testcontainers
 class UserDaoImplTest {
@@ -52,16 +55,20 @@ class UserDaoImplTest {
 
     @Test
     void shouldSaveAndFindUserById() {
-        User user = new User("James Gosling", "java@rules.com", 70);
+        User user = createTestUserA();
 
         userDao.save(user);
         Optional<User> foundUser = userDao.findById(user.getId());
 
-        assertThat(foundUser).isPresent();
-        assertThat(foundUser.get().getName()).isEqualTo("James Gosling");
-        assertThat(foundUser.get().getEmail()).isEqualTo("java@rules.com");
-        assertThat(foundUser.get().getAge()).isEqualTo(70);
-        assertThat(foundUser.get().getCreatedAt()).isBeforeOrEqualTo(LocalDateTime.now());
+        assertTrue(foundUser.isPresent());
+        assertAll("Проверка всех полей пользователя",
+                () -> assertEquals("James Gosling", foundUser.get().getName()),
+                () -> assertEquals("java@rules.com", foundUser.get().getEmail()),
+                () -> assertEquals(70, foundUser.get().getAge()),
+                () -> assertThat(foundUser.get().getCreatedAt()).isBeforeOrEqualTo(LocalDateTime.now())
+        );
+
+
     }
 
     @Test
@@ -72,17 +79,17 @@ class UserDaoImplTest {
 
     @Test
     void shouldFindAllUsers() {
-        userDao.save(new User("Ada Lovelace", "ada@forever.com", 36));
-        userDao.save(new User("John Romero", "doom@guy.com", 57));
+        userDao.save(createTestUserB());
+        userDao.save(createTestUserC());
 
         List<User> testUsers = userDao.findAll();
         assertThat(testUsers).hasSize(2);
-        assertThat(testUsers).extracting(User::getName).containsExactly("Ada Lovelace", "John Romero");
+        assertThat(testUsers).extracting(User::getName).containsExactly("Ada Lovelace", "Alfonso John Romero");
     }
 
     @Test
     void shouldUpdateUser() {
-        User userToUpdate = new User("Alfonso John Romero", "doom@guy.com", 32);
+        User userToUpdate = createTestUserC();
         userDao.save(userToUpdate);
 
         userToUpdate.setName("John Romero");
