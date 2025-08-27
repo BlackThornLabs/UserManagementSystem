@@ -1,6 +1,6 @@
 package com.github.BlackThornLabs.util;
 
-import com.github.BlackThornLabs.dto.UserRequest;
+import com.github.BlackThornLabs.dto.UserRequestDTO;
 import com.github.BlackThornLabs.model.User;
 
 import java.time.LocalDateTime;
@@ -46,34 +46,34 @@ public class TestDataUtil {
                 .build();
     }
 
-    // Методы для создания UserRequest DTO
-    public static UserRequest createUserRequestA() {
-        UserRequest request = new UserRequest();
+    // Методы для создания UserRequestDTO DTO
+    public static UserRequestDTO createUserRequestA() {
+        UserRequestDTO request = new UserRequestDTO();
         request.setName("James Gosling");
         request.setEmail("java@rules.com");
         request.setAge(70);
         return request;
     }
 
-    public static UserRequest createUserRequestB() {
-        UserRequest request = new UserRequest();
+    public static UserRequestDTO createUserRequestB() {
+        UserRequestDTO request = new UserRequestDTO();
         request.setName("Ada Lovelace");
         request.setEmail("ada@forever.com");
         request.setAge(36);
         return request;
     }
 
-    public static UserRequest createUserRequest(String name, String email, int age) {
-        UserRequest request = new UserRequest();
+    public static UserRequestDTO createUserRequest(String name, String email, int age) {
+        UserRequestDTO request = new UserRequestDTO();
         request.setName(name);
         request.setEmail(email);
         request.setAge(age);
         return request;
     }
 
-    // Метод для создания UserRequest для обновления
-    public static UserRequest createUpdateRequest() {
-        UserRequest request = new UserRequest();
+    // Метод для создания UserRequestDTO для обновления
+    public static UserRequestDTO createUpdateRequest() {
+        UserRequestDTO request = new UserRequestDTO();
         request.setName("Updated Name");
         request.setEmail("updated@email.com");
         request.setAge(40);

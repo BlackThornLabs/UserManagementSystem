@@ -2,8 +2,6 @@ package com.github.BlackThornLabs.model;
 
 import lombok.*;
 import jakarta.persistence.*;
-
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity

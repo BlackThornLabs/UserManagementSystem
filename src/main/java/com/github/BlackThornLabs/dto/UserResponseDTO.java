@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 @Data
-public class UserResponse {
+public class UserResponseDTO {
     private long id;
     private String name;
     private String email;

@@ -36,7 +36,7 @@ class UserRepositoryTestcontainerTest extends AbstractIntegrationTest {
         User user = TestDataUtil.createTestUserB();
         userRepository.save(user);
 
-        Optional<User> result = userRepository.findByEmail("ada@forever.com");
+        Optional<User> result = userRepository.findUserByEmail("ada@forever.com");
 
         assertThat(result).isPresent();
         assertThat(result.get().getName()).isEqualTo("Ada Lovelace");
@@ -44,7 +44,7 @@ class UserRepositoryTestcontainerTest extends AbstractIntegrationTest {
 
     @Test
     void shouldReturnEmptyForNonExistentEmail() {
-        Optional<User> result = userRepository.findByEmail("nonexistent@email.com");
+        Optional<User> result = userRepository.findUserByEmail("nonexistent@email.com");
 
         assertThat(result).isEmpty();
     }

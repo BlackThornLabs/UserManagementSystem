@@ -1,7 +1,8 @@
 package com.github.BlackThornLabs.service;
 
-import com.github.BlackThornLabs.dto.UserRequest;
-import com.github.BlackThornLabs.dto.UserResponse;
+import com.github.BlackThornLabs.dto.UserRequestDTO;
+import com.github.BlackThornLabs.dto.UserResponseDTO;
+import com.github.BlackThornLabs.mapper.UserMapper;
 import com.github.BlackThornLabs.model.User;
 import com.github.BlackThornLabs.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,58 +20,37 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-
-    //Маппер из User в DTO
-    private UserResponse toResponse(User user) {
-        System.out.println("DEBUG toResponse: user.name='" + user.getName() + "', user.email='" + user.getEmail() + "'");
-        UserResponse response = new UserResponse();
-        response.setId(user.getId());
-        response.setName(user.getName());
-        response.setEmail(user.getEmail());
-        response.setAge(user.getAge());
-        response.setCreatedAt(user.getCreatedAt());
-        System.out.println("DEBUG toResponse: response.name='" + response.getName() + "', response.email='" + response.getEmail() + "'");
-        return response;
-    }
-
-    //Маппер из DTO в User
-    private User toEntity(UserRequest request) {
-        return User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .age(request.getAge())
-                .build();
-    }
+    private final UserMapper userMapper;
 
     // Создание записи пользователя через DTO
-    public UserResponse createUser(@Valid UserRequest request) {
-        User user = toEntity(request);
+    public UserResponseDTO createUser(@Valid UserRequestDTO request) {
+        User user = userMapper.toEntity(request);
         User savedUser = userRepository.save(user);
-        return toResponse(savedUser);
+        return userMapper.toResponseDTO(savedUser);
     }
 
     // Чтение записей из базы
-    public Optional<UserResponse> getUserById(long id) {
-        return userRepository.findById(id).map(this::toResponse);
+    public Optional<UserResponseDTO> getUserById(long id) {
+        return userRepository.findById(id).map(userMapper::toResponseDTO);
     }
 
-    public List<UserResponse> getAllUsers() {
+    public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(this::toResponse)
+                .map(userMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public Optional<UserResponse> getUserByEmail(String email) {
-        return userRepository.findByEmail(email).map(this::toResponse);
+    public Optional<UserResponseDTO> getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email).map(userMapper::toResponseDTO);
     }
 
     // Обновление записи пользователя
-    public Optional<UserResponse> updateUser(Long id, UserRequest request) {
+    public Optional<UserResponseDTO> updateUser(Long id, UserRequestDTO request) {
         return userRepository.findById(id)
                 .map(user -> {
                     request.applyToUser(user); // Используем безопасный метод
                     User updatedUser = userRepository.save(user);
-                    return toResponse(updatedUser);
+                    return userMapper.toResponseDTO(updatedUser);
                 });
     }
 

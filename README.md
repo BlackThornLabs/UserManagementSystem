@@ -14,6 +14,8 @@
 ## 🧪 Тестирование
 
 - **JUnit 5**
+- **Mapstruct (маппирование)**
+- **Lombok (cокращение boilerplate-кода)**
 - **Testcontainers** (интеграционные тесты с PostgreSQL)
 - **Mockito** (мокирование зависимостей)
 
@@ -28,9 +30,12 @@
    CREATE DATABASE user_service;
 2. Настройте подключение к БД в src/main/resources/application.properties:
 
-
    **spring.datasource.url=jdbc:postgresql://localhost:5432/user_service**
    **spring.datasource.username=your_username**
    **spring.datasource.password=your_password**
    **spring.jpa.hibernate.ddl-auto=update**
+
+3. Для запуска консольного приложения:
+   3.1. РАСКОММЕНТИРУЙТЕ две последние строки в application.properties
+   3.2. Запустите программу с аргументами командной строки: "-Dspring.profiles.active=console"
 

@@ -1,7 +1,7 @@
 package com.github.BlackThornLabs.service;
 
-import com.github.BlackThornLabs.dto.UserRequest;
-import com.github.BlackThornLabs.dto.UserResponse;
+import com.github.BlackThornLabs.dto.UserRequestDTO;
+import com.github.BlackThornLabs.dto.UserResponseDTO;
 import com.github.BlackThornLabs.model.User;
 import com.github.BlackThornLabs.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class UserServiceTest {
 
     @Test
     void shouldCreateUserSuccessfully() {
-        UserRequest request = new UserRequest();
+        UserRequestDTO request = new UserRequestDTO();
         request.setName("Test User");
         request.setEmail("test@email.com");
         request.setAge(25);
@@ -43,7 +43,7 @@ public class UserServiceTest {
 
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        UserResponse response = userService.createUser(request);
+        UserResponseDTO response = userService.createUser(request);
 
         assertThat(response).isNotNull();
         assertThat(response.getName()).isEqualTo("Test User");
@@ -63,7 +63,7 @@ public class UserServiceTest {
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        Optional<UserResponse> result = userService.getUserById(1L);
+        Optional<UserResponseDTO> result = userService.getUserById(1L);
 
         assertThat(result).isPresent();
         assertThat(result.get().getName()).isEqualTo("Test User");
@@ -74,7 +74,7 @@ public class UserServiceTest {
     void shouldReturnEmptyForNonExistentUser() {
         when(userRepository.findById(999L)).thenReturn(Optional.empty());
 
-        Optional<UserResponse> result = userService.getUserById(999L);
+        Optional<UserResponseDTO> result = userService.getUserById(999L);
 
         assertThat(result).isEmpty();
         verify(userRepository, times(1)).findById(999L);
@@ -90,7 +90,7 @@ public class UserServiceTest {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        UserRequest request = new UserRequest();
+        UserRequestDTO request = new UserRequestDTO();
         request.setName("New Name");
         request.setEmail("new@email.com");
         request.setAge(30);
@@ -106,7 +106,7 @@ public class UserServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
         when(userRepository.save(any(User.class))).thenReturn(updatedUser);
 
-        Optional<UserResponse> result = userService.updateUser(1L, request);
+        Optional<UserResponseDTO> result = userService.updateUser(1L, request);
 
         assertThat(result).isPresent();
         assertThat(result.get().getName()).isEqualTo("New Name");

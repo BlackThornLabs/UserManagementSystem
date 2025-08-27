@@ -1,10 +1,9 @@
 package com.github.BlackThornLabs;
 
-import com.github.BlackThornLabs.dto.UserRequest;
-import com.github.BlackThornLabs.dto.UserResponse;
+import com.github.BlackThornLabs.dto.UserRequestDTO;
+import com.github.BlackThornLabs.dto.UserResponseDTO;
 import com.github.BlackThornLabs.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +12,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Component
-@Profile("default")
+@Profile("console")
 @RequiredArgsConstructor
-public class ConsoleRunner implements CommandLineRunner {
+public class Console {
     private final UserService userService;
     private final Scanner scanner = new Scanner(System.in);
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Override
-    public void run(String... args) {
+    public void start(String... args) {
         System.out.println("===...powered by Spring Boot and Alyosha ===");
 
         boolean running = true;
@@ -81,13 +79,13 @@ public class ConsoleRunner implements CommandLineRunner {
         int age = getIntInput("Введите возраст: ");
         scanner.nextLine();
 
-        UserRequest request = new UserRequest();
+        UserRequestDTO request = new UserRequestDTO();
         request.setName(name);
         request.setEmail(email);
         request.setAge(age);
 
         try {
-            UserResponse response = userService.createUser(request);
+            UserResponseDTO response = userService.createUser(request);
             System.out.println("Пользователь успешно создан с ID: " + response.getId());
         } catch (Exception e) {
             System.err.println("Ошибка создания записи: " + e.getMessage());
@@ -100,7 +98,7 @@ public class ConsoleRunner implements CommandLineRunner {
         scanner.nextLine();
 
         try {
-            Optional<UserResponse> user = userService.getUserById(id);
+            Optional<UserResponseDTO> user = userService.getUserById(id);
             if (user.isPresent()) {
                 printUserDetails(user.get());
             } else {
@@ -116,7 +114,7 @@ public class ConsoleRunner implements CommandLineRunner {
         System.out.println("Введите ID пользователя: ");
         String email = scanner.nextLine();
         try {
-            Optional<UserResponse> user = userService.getUserByEmail(email);
+            Optional<UserResponseDTO> user = userService.getUserByEmail(email);
             if (user.isPresent()) {
                 printUserDetails(user.get());
             } else {
@@ -147,7 +145,7 @@ public class ConsoleRunner implements CommandLineRunner {
         scanner.nextLine();
 
         try {
-            Optional<UserResponse> currentUser = userService.getUserById(id);
+            Optional<UserResponseDTO> currentUser = userService.getUserById(id);
             if (currentUser.isEmpty()) {
                 System.out.println("Не найден пользователь с ID: " + id);
                 return;
@@ -156,7 +154,7 @@ public class ConsoleRunner implements CommandLineRunner {
             System.out.print("Данные текущего пользователя: ");
             printUserDetails(currentUser.get());
 
-            UserRequest request = new UserRequest();
+            UserRequestDTO request = new UserRequestDTO();
 
             System.out.print("Введите новое имя (оставьте пустым, чтобы сохранить текущее): ");
             String name = scanner.nextLine();
@@ -177,7 +175,7 @@ public class ConsoleRunner implements CommandLineRunner {
                 }
             }
 
-            Optional<UserResponse> updatedUser = userService.updateUser(id, request);
+            Optional<UserResponseDTO> updatedUser = userService.updateUser(id, request);
             if (updatedUser.isPresent()) {
                 System.out.println("Пользователь успешно обновлён!");
             } else System.out.println("Пользователь не найден в процессе обновления.");
@@ -202,7 +200,7 @@ public class ConsoleRunner implements CommandLineRunner {
         }
     }
 
-    private void printUserDetails(UserResponse user) {
+    private void printUserDetails(UserResponseDTO user) {
         System.out.println("\nID: " + user.getId());
         System.out.println("Имя: " + user.getName());
         System.out.println("Email: " + user.getEmail());
