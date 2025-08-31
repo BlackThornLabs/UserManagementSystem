@@ -15,7 +15,6 @@
 
 - **JUnit 5**
 - **Mapstruct (маппирование)**
-- **Lombok (cокращение boilerplate-кода)**
 - **Testcontainers** (интеграционные тесты с PostgreSQL)
 - **Mockito** (мокирование зависимостей)
 
